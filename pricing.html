@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shree Hari Solution - Pricing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ====== HEADER ====== */
+    header {
+      width: 100%;
+      padding: 20px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0,0,0,0.3);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: linear-gradient(90deg,white);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #ddd;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #fff;
+    }
+
+    .nav-btn {
+      padding: 10px 20px;
+      border-radius: 25px;
+      background: linear-gradient(90deg, #a855f7, #ff66cc);
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .nav-btn:hover {
+      background: linear-gradient(90deg, #9333ea, #ff3399);
+    }
+
+    /* ====== HERO HEADER ====== */
+    .hero {
+      text-align: center;
+      padding: 80px 20px 40px;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, #ff66cc, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #ccc;
+    }
+
+    /* ====== PRICING ====== */
+    .pricing-container {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 35px;
+      width: 320px;
+      backdrop-filter: blur(25px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 12px 50px rgba(0, 0, 0, 0.7);
+    }
+
+    .card h2 {
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .price {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin: 25px 0;
+    }
+
+    .card ul {
+      list-style: none;
+      margin-bottom: 25px;
+    }
+
+    .card ul li {
+      margin: 12px 0;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #ddd;
+    }
+
+    .card ul li::before {
+      content: "✔";
+      color: #4fc3f7;
+      font-weight: bold;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      padding: 14px 20px;
+      border-radius: 30px;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: 0.3s;
+    }
+
+    .basic .btn {
+      background: linear-gradient(90deg, #444, #222);
+      color: #fff;
+    }
+    .basic .btn:hover {
+      background: linear-gradient(90deg, #555, #333);
+    }
+
+    .premium {
+      border: 2px solid #a855f7;
+    }
+    .premium .btn {
+      background: linear-gradient(90deg, #a855f7, #ff66cc);
+      color: #fff;
+      box-shadow: 0 0 12px rgba(168,85,247,0.6);
+    }
+    .premium .btn:hover {
+      background: linear-gradient(90deg, #9333ea, #ff3399);
+    }
+
+    .enterprise .btn {
+      background: linear-gradient(90deg, #1fd4c5, #10b7a9);
+      color: #000;
+      font-weight: 600;
+    }
+    .enterprise .btn:hover {
+      background: linear-gradient(90deg, #10b7a9, #0f9c91);
+    }
+
+    /* ====== FOOTER ====== */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+      margin-top: auto;
+    }
+
+    footer p {
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+
+    @media(max-width: 900px) {
+      .pricing-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      nav ul {
+        display: none; /* can be turned into hamburger later */
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="logo">Shree Hari Solution</div>
+    <nav>
+      <ul>
+        <li><a href="dashboard.html">Home</a></li>
+        <li><a href="projects.html">Support</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="contactus.html">Contact</a></li>
+      </ul>
+    </nav>
+    <a href="#" class="nav-btn">Get Started</a>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <h1>Choose your plan</h1>
+    <p>Unlock endless possibilities</p>
+  </section>
+
+  <!-- PRICING SECTION -->
+  <div class="pricing-container">
+    <!-- Basic Plan -->
+    <div class="card basic">
+      <h2>Basic</h2>
+      <div class="price">$0</div>
+      <ul>
+        <li>10 requests per day</li>
+        <li>Standard AI models</li>
+        <li>Limited API access</li>
+      </ul>
+      <a href="#" class="btn">Get Started</a>
+    </div>
+
+    <!-- Premium Plan -->
+    <div class="card premium">
+      <h2>Premium</h2>
+      <div class="price">$9.99</div>
+      <ul>
+        <li>Unlimited AI generations</li>
+        <li>Access to all models</li>
+        <li>Priority support</li>
+      </ul>
+      <a href="#" class="btn">Get Started</a>
+    </div>
+
+    <!-- Enterprise Plan -->
+    <div class="card enterprise">
+      <h2>Enterprise</h2>
+      <div class="price">Custom</div>
+      <ul>
+        <li>Custom deployments</li>
+        <li>Corporate-grade data</li>
+        <li>Training specialized models</li>
+      </ul>
+      <a href="#" class="btn">Contact Us</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer style="background-color: #0f2743; color: #ffffff; padding: 40px 20px;">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px;">
+      <!-- About -->
+      <div style="flex: 1 1 250px;">
+        <h3 style="margin-bottom: 16px; font-size: 18px;">SHREE HARI SOLUTIONS</h3>
+        <p style="font-size: 14px; color: #ccc;">
+          Delivering next-gen CAD cloud storage and modeling solutions for modern engineering and design teams.
+        </p>
+      </div>
+  
+      <!-- Quick Links -->
+      <div style="flex: 1 1 200px;">
+        <h4 style="margin-bottom: 16px; font-size: 16px;">Quick Links</h4>
+        <ul style="list-style: none; padding: 0;">
+          <li><a href="product.html" style="color: #ccc; text-decoration: none;">Products</a></li>
+          <li><a href="#" style="color: #ccc; text-decoration: none;">Solutions</a></li>
+          <li><a href="#" style="color: #ccc; text-decoration: none;">Support</a></li>
+          <li><a href="#" style="color: #ccc; text-decoration: none;">Community</a></li>
+          <li><a href="#" style="color: #ccc; text-decoration: none;">Buy</a></li>
+        </ul>
+      </div>
+  
+      <!-- Contact Info -->
+      <div style="flex: 1 1 250px;">
+        <h4 style="margin-bottom: 16px; font-size: 16px;">Contact</h4>
+        <p style="font-size: 14px; color: #ccc;">📍  Gujarat, India</p>
+        <p style="font-size: 14px; color: #ccc;">📞 +91 98765 43210</p>
+        <p style="font-size: 14px; color: #ccc;">📧 support@shreehari.com</p>
+      </div>
+  
+      <!-- Social Media -->
+      <div style="flex: 1 1 200px;">
+        <h4 style="margin-bottom: 16px; font-size: 16px;">Follow Us</h4>
+        <p style="font-size: 24px;">
+          <a href="#" style="text-decoration: none; margin-right: 12px; color: #ccc;">🌐</a>
+          <a href="#" style="text-decoration: none; margin-right: 12px; color: #ccc;">📘</a>
+          <a href="#" style="text-decoration: none; margin-right: 12px; color: #ccc;">🐦</a>
+          <a href="#" style="text-decoration: none; color: #ccc;">📸</a>
+        </p>
+      </div>
+    </div>
+  
+    <div style="text-align: center; padding-top: 30px; margin-top: 30px; border-top: 1px solid #333; font-size: 14px; color: #aaa;">
+      © 2025 SHREE HARI SOLUTIONS. All rights reserved.
+    </div>
+  </footer>
+
+</body>
+</html>

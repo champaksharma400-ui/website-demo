@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHREE HARI CLOUD SERVICE - Contact Us</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap">
+  <style>
+    :root {
+      --primary: #4c2ca0;
+      --secondary: #1fd4c5;
+      --bg: #f8f8fb;
+      --text: #22223b;
+      --highlight: #3b06b7;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    .hero {
+      background: linear-gradient(90deg, rgba(76,44,160,0.87) 0%, rgba(31,212,197,0.8) 100%), url('https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1000&q=80') center/cover;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      animation: heroFade 1.4s ease-in;
+      position: relative;
+    }
+    @keyframes heroFade {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .top-bar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      position: absolute;
+      top: 30px;
+      left: 0;
+      padding: 0 40px;
+      z-index: 1;
+    }
+    .company-logo-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      animation: logoSlide 1.2s cubic-bezier(0.23,1,0.32,1);
+    }
+    .logo-img {
+      width: 46px;
+      height: 46px;
+      object-fit: contain;
+    }
+    .logo-title {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #fff;
+      letter-spacing: 1.2px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      white-space: nowrap;
+    }
+    @keyframes logoSlide {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    nav {
+      display: flex;
+      gap: 30px;
+      margin-top: 2px;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1rem;
+      opacity: 0.92;
+      position: relative;
+      transition: color 0.18s;
+    }
+    nav a:hover,
+    nav a:focus {
+      color: var(--secondary);
+    }
+    .btn-get-started {
+      background: var(--secondary);
+      border: none;
+      padding: 10px 22px;
+      border-radius: 6px;
+      color: #fff;
+      font-weight: bold;
+      margin-left: 12px;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: background 0.18s, box-shadow 0.18s;
+      box-shadow: 0 2px 10px rgba(31,212,197,0.18);
+    }
+    .btn-get-started:hover {
+      background: #18bfa6;
+      box-shadow: 0 3px 16px rgba(31,212,197,0.27);
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-shadow: 0 2px 18px rgba(44,44,44,0.21);
+   
+      z-index: 2;
+      position: relative;
+      background: rgba(0,0,0,0.14);
+      border-radius: 8px;
+      display: inline-block;
+      padding: 10px 34px;
+      animation: headingFadeIn 1.3s;
+    }
+    @keyframes headingFadeIn {
+      from { opacity: 0; transform: scale(1.1);}
+      to { opacity: 1; transform: scale(1);}
+    }
+    /* Contact Card */
+    .contact-card {
+      background: #fff;
+      max-width: 950px;
+      margin: -90px auto 2rem auto;
+      border-radius: 15px;
+      box-shadow: 0 4px 38px 0 rgba(76,44,160,0.14), 0 2px 4px rgba(0,0,0,0.06);
+      display: flex;
+      padding: 32px 40px;
+      position: relative;
+      z-index: 2;
+      animation: cardPop 1.35s cubic-bezier(0.4, 0, 0.2, 1);
+      gap: 48px;
+    }
+    @keyframes cardPop {
+      from { opacity: 0; transform: scale(0.96); }
+      to { opacity: 1; transform: scale(1);}
+    }
+    .contact-info, .contact-form {
+      flex: 1;
+    }
+    .contact-info h2 {
+      font-size: 1.55rem;
+      margin-bottom: 14px;
+      color: var(--highlight);
+    }
+    .contact-info ul {
+      margin: 16px 0 18px 18px;
+      list-style: disc;
+    }
+    .contact-info ul li {
+      margin-bottom: 10px;
+      font-size: 1.05rem;
+      opacity: 0.93;
+      line-height: 1.52;
+      position: relative;
+    }
+    .form-title {
+      font-size: 1.17rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: #1b0757;
+    }
+    form label {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 8px;
+      font-weight: 500;
+      margin-top: 18px;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 13px 14px;
+      margin-bottom: 12px;
+      border: 1.5px solid #dde2ea;
+      border-radius: 5px;
+      font-size: 1rem;
+      background: #f7f8fa;
+      transition: border 0.16s, box-shadow 0.18s;
+      outline: none;
+    }
+    form input:focus, form textarea:focus {
+      border: 1.5px solid var(--highlight);
+      box-shadow: 0 2px 9px rgba(76,44,160,0.14);
+      background: #fff;
+    }
+    .required {
+      color: #dd4477;
+      font-size: 0.98em;
+      margin-left: 3px;
+    }
+    .submit-btn {
+      background: var(--highlight);
+      color: #fff;
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      padding: 11px 28px;
+      margin-top: 12px;
+      font-size: 1.08rem;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(44,6,183,0.11);
+      transition: background 0.17s, box-shadow 0.17s, transform 0.13s;
+      position: relative;
+      overflow: hidden;
+    }
+    .submit-btn:after {
+      content: '';
+      position: absolute;
+      left: 50%; top: 50%;
+      width: 190%; height: 220%;
+      background: linear-gradient(120deg, rgba(255,255,255,0.25), rgba(31,212,197,0.18) 60%);
+      border-radius: 43%;
+      transform: translate(-50%, -50%) scale(0.8);
+      opacity: 0;
+      z-index: 0;
+      pointer-events: none;
+      transition: opacity 0.32s;
+    }
+    .submit-btn:hover:after {
+      opacity: 1;
+    }
+    .submit-btn:hover {
+      background: #3b06b7;
+      transform: translateY(-2px) scale(1.015);
+      box-shadow: 0 5px 22px rgba(44,6,187,0.18);
+    }
+    /* Responsive Design */
+    @media (max-width: 980px) {
+      .contact-card {
+        flex-direction: column;
+        padding: 30px 16px;
+        gap: 26px;
+      }
+      .hero h1 {
+        margin-top: 104px;
+      }
+      .top-bar { padding: 0 18px; }
+    }
+    @media (max-width: 600px) {
+      .hero {
+        height: 170px;
+      }
+      .hero h1 {
+        font-size: 1.22rem;
+        margin-top: 66px;
+        padding: 7px 11px;
+      }
+      .top-bar { 
+        padding: 0 8px; 
+        top: 10px;
+      }
+      .company-logo-title {
+        gap: 7px;
+      }
+      .logo-img {
+        width: 32px;
+        height: 32px;
+      }
+      .logo-title {
+        font-size: 1rem;
+      }
+      nav {
+        font-size: 0.87rem;
+        gap: 14px;
+        margin-top: 0;
+      }
+      .contact-card {
+        margin: -60px 3vw 1.2rem 3vw;
+        padding: 15px 5vw;
+      }
+      .contact-info h2 {
+        font-size: 1.13rem;
+      }
+      .form-title { font-size: 0.98rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="top-bar">
+      <div class="company-logo-title">
+        <!-- Replace the SVG below with your company logo if you have one -->
+        <svg class="logo-img" viewBox="0 0 45 45" fill="none">
+          <circle cx="22.5" cy="22.5" r="22.5" fill="#1fd4c5"/>
+          <path d="M17 30 L22.5 14 L28 30" stroke="#4c2ca0" stroke-width="2" fill="none"/>
+          <circle cx="22.5" cy="22.5" r="3" fill="#fff"/>
+        </svg>
+        <span class="logo-title">SHREE HARI CLOUD SERVICE</span>
+      </div>
+      <nav>
+        <a href="#">PRODUCT</a>
+        <a href="#">SOLUTIONS</a>
+        <a href="#">SUPPORT</a>
+        <a href="#">COMMUNITY</a>
+        <a href="#">BUY</a>
+        <button class="btn-get-started">GET STARTED</button>
+      </nav>
+    </div>
+    <!-- Prominent Contact Us Heading -->
+    <h1>Contact Us</h1>
+  </div>
+  <div class="contact-card">
+    <div class="contact-info">
+      <h2>Let's Start a Conversation</h2>
+      <div>
+        <strong>Ask how we can help you:</strong>
+        <ul>
+          <li>Get a personalized demo of our platform</li>
+          <li>Sign up for a <a href="#" style="color:var(--highlight);text-decoration:underline;">30-day free trial</a> for instant access</li>
+          <li>Improve your marketing strategy with TUNE Academy and insights</li>
+          <li>Resolve product or technical questions</li>
+          <li>Explore partnership opportunities</li>
+        </ul>
+      </div>
+    </div>
+    <div class="contact-form">
+      <div class="form-title">Please note: all fields are required.</div>
+      <form>
+        <label for="fname">First Name <span class="required">*</span></label>
+        <input type="text" id="fname" required placeholder="Your first name">
+        <label for="lname">Last Name <span class="required">*</span></label>
+        <input type="text" id="lname" required placeholder="Your last name">
+        <label for="email">Email <span class="required">*</span></label>
+        <input type="email" id="email" required placeholder="example@email.com">
+        <label for="msg">How can we help you? <span class="required">*</span></label>
+        <textarea id="msg" rows="3" required placeholder="Describe your request"></textarea>
+        <button type="submit" class="submit-btn">Send Message</button>
+      </form>
+    </div>
+  </div>
+</body>
+<footer style="background-color: #0f2743; color: #ffffff; padding: 40px 20px;">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px;">
+      <!-- About -->
+      <div style="flex: 1 1 250px;">
+        <h3 style="margin-bottom: 16px; font-size: 18px;">SHREE HARI SOLUTIONS</h3>
+        <p style="font-size: 14px; color: #ccc;">
+          Delivering next-gen CAD cloud storage and modeling solutions for modern engineering and design teams.
+        </p>
+      </div>
+  
+      <!-- Quick Links -->
+      <div style="flex: 1 1 200px;">
+        <h4 style="margin-bottom: 16px; font-size: 16px;">Quick Links</h4>
+        <ul style="list-style: none; padding: 0;">
+          <li><a href="product.html" style="color: #ccc; text-decoration: none;">Products</a></li>
+          <li><a href="#" style="color: #ccc; text-decoration: none;">Solutions</a></li>
+          <li><a href="#" style="color: #ccc; text-decoration: none;">Support</a></li>
+          <li><a href="#" style="color: #ccc; text-decoration: none;">Community</a></li>
+          <li><a href="#" style="color: #ccc; text-decoration: none;">Buy</a></li>
+        </ul>
+      </div>
+  
+      <!-- Contact Info -->
+      <div style="flex: 1 1 250px;">
+        <h4 style="margin-bottom: 16px; font-size: 16px;">Contact</h4>
+        <p style="font-size: 14px; color: #ccc;">📍  Gujarat, India</p>
+        <p style="font-size: 14px; color: #ccc;">📞 +91 98765 43210</p>
+        <p style="font-size: 14px; color: #ccc;">📧 support@shreehari.com</p>
+      </div>
+  
+      <!-- Social Media -->
+      <div style="flex: 1 1 200px;">
+        <h4 style="margin-bottom: 16px; font-size: 16px;">Follow Us</h4>
+        <p style="font-size: 24px;">
+          <a href="#" style="text-decoration: none; margin-right: 12px; color: #ccc;">🌐</a>
+          <a href="#" style="text-decoration: none; margin-right: 12px; color: #ccc;">📘</a>
+          <a href="#" style="text-decoration: none; margin-right: 12px; color: #ccc;">🐦</a>
+          <a href="#" style="text-decoration: none; color: #ccc;">📸</a>
+        </p>
+      </div>
+    </div>
+  
+    <div style="text-align: center; padding-top: 30px; margin-top: 30px; border-top: 1px solid #333; font-size: 14px; color: #aaa;">
+      © 2025 SHREE HARI SOLUTIONS. All rights reserved.
+    </div>
+  </footer>
+</html>

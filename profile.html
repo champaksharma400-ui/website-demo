@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Profile</title>
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+  <!-- Top Navbar -->
+  <header class="bg-gradient-to-r from-indigo-700 to-indigo-900 text-white px-6 py-4 flex justify-between items-center">
+    <h1 class="font-bold tracking-wide">USER PROFILE</h1>
+    <div class="flex items-center space-x-4">
+      <div class="relative">
+        <input type="text" placeholder="Search" 
+               class="pl-4 pr-10 py-2 rounded-full text-sm text-gray-800 focus:outline-none"/>
+        <span class="absolute right-3 top-2.5 text-gray-400">🔍</span>
+      </div>
+      <div class="flex items-center space-x-2">
+        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="user" class="w-8 h-8 rounded-full border-2 border-white"/>
+        <span class="font-medium">Jessica Jones</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-r from-indigo-700 to-indigo-900 text-white py-16 px-6">
+    <div class="max-w-4xl mx-auto text-left">
+      <h2 class="text-4xl font-bold mb-2">Hello Jesse</h2>
+      <p class="text-lg opacity-90 mb-6">
+        This is your profile page. You can see the progress you’ve made with 
+        your work and manage your projects or assigned tasks.
+      </p>
+      <button class="bg-cyan-500 hover:bg-cyan-600 text-white px-6 py-2 rounded shadow">
+        Edit profile
+      </button>
+    </div>
+  </section>
+
+  <!-- Profile Content -->
+  <main class="max-w-6xl mx-auto -mt-20 px-6 grid md:grid-cols-3 gap-6">
+    
+    <!-- Account Info -->
+    <div class="md:col-span-2 bg-white rounded-lg shadow p-6">
+      <div class="flex justify-between items-center mb-6">
+        <h3 class="text-xl font-bold">My Account</h3>
+        <button class="text-sm bg-indigo-600 text-white px-4 py-1 rounded hover:bg-indigo-700">
+          Settings
+        </button>
+      </div>
+
+      <!-- User Information -->
+      <h4 class="text-sm font-semibold text-gray-500 mb-2">USER INFORMATION</h4>
+      <div class="grid md:grid-cols-2 gap-4 mb-6">
+        <div>
+          <label class="text-xs text-gray-500">Username</label>
+          <input type="text" value="lucky.jesse" class="w-full border px-3 py-2 rounded"/>
+        </div>
+        <div>
+          <label class="text-xs text-gray-500">Email address</label>
+          <input type="email" value="jesse@example.com" class="w-full border px-3 py-2 rounded"/>
+        </div>
+        <div>
+          <label class="text-xs text-gray-500">First name</label>
+          <input type="text" value="Jesse" class="w-full border px-3 py-2 rounded"/>
+        </div>
+        <div>
+          <label class="text-xs text-gray-500">Last name</label>
+          <input type="text" value="Lucky" class="w-full border px-3 py-2 rounded"/>
+        </div>
+      </div>
+
+      <!-- Contact Info -->
+      <h4 class="text-sm font-semibold text-gray-500 mb-2">CONTACT INFORMATION</h4>
+      <div class="grid md:grid-cols-2 gap-4 mb-6">
+        <div>
+          <label class="text-xs text-gray-500">Address</label>
+          <input type="text" value="123 Main Street, Springfield" class="w-full border px-3 py-2 rounded"/>
+        </div>
+        <div>
+          <label class="text-xs text-gray-500">Phone</label>
+          <input type="text" value="+1 555 123 456" class="w-full border px-3 py-2 rounded"/>
+        </div>
+      </div>
+
+      <!-- About -->
+      <h4 class="text-sm font-semibold text-gray-500 mb-2">ABOUT ME</h4>
+      <textarea rows="4" class="w-full border px-3 py-2 rounded">
+Enthusiastic designer and developer passionate about creating innovative digital experiences. 
+Loves exploring CAD tools, 3D modeling, and modern web development frameworks.
+      </textarea>
+    </div>
+
+    <!-- Profile Card -->
+    <div class="bg-white rounded-lg shadow p-6 text-center relative">
+      <div class="absolute -top-16 left-1/2 transform -translate-x-1/2">
+        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="profile" class="w-32 h-32 rounded-full border-4 border-white shadow"/>
+      </div>
+      <div class="mt-20">
+        <h3 class="text-lg font-bold">Jesse Lucky</h3>
+        <p class="text-sm text-gray-500 mb-4">UI/UX Designer</p>
+        <div class="flex justify-center gap-3 mb-6">
+          <button class="bg-cyan-500 text-white px-4 py-1 rounded hover:bg-cyan-600">Connect</button>
+          <button class="bg-indigo-600 text-white px-4 py-1 rounded hover:bg-indigo-700">Message</button>
+        </div>
+        <div class="grid grid-cols-3 gap-4 text-center">
+          <div>
+            <p class="font-bold">22</p>
+            <p class="text-xs text-gray-500">Friends</p>
+          </div>
+          <div>
+            <p class="font-bold">10</p>
+            <p class="text-xs text-gray-500">Photos</p>
+          </div>
+          <div>
+            <p class="font-bold">89</p>
+            <p class="text-xs text-gray-500">Comments</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300 py-6 text-center mt-10">
+    <p>&copy; 2025 Profile Dashboard. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

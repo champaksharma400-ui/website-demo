@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DesignAli Creative Suite — Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f7fb;
+      --sidebar: #ffffff;
+      --muted: #6b6f76;
+      --accent1: linear-gradient(90deg, #7b61ff 0%, #6ca7ff 100%);
+      --card: #ffffff;
+      --shadow: 0 6px 18px rgba(34, 34, 34, 0.06);
+    }
+    * { box-sizing: border-box }
+    html, body { height: 100% }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      margin: 0; color: #111827;
+    }
+    .app { display: flex; min-height: 100vh }
+
+    /* Sidebar */
+    .sidebar {
+      width: 260px; background: var(--sidebar);
+      border-right: 1px solid #eee;
+      display: flex; flex-direction: column;
+      gap: 18px; padding: 22px 18px; flex-shrink: 0
+    }
+    .brand { display: flex; align-items: center; gap: 12px }
+    .logo {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: linear-gradient(135deg, #6f5cff, #4cc1ff);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-weight: 700
+    }
+    .brand h1 { font-size: 14px; margin: 0 }
+    .search { margin-top: 8px }
+    .search input {
+      width: 100%; padding: 10px 12px; border-radius: 10px;
+      border: 1px solid #eee; background: #fafafa
+    }
+    .nav { margin-top: 10px; display: flex; flex-direction: column; gap: 8px }
+    .nav a {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px; border-radius: 9px;
+      color: #111827; text-decoration: none
+    }
+    .nav a:hover { background: #fbfbff }
+    .nav .active { background: #f3f2ff }
+
+    .bottom { margin-top: auto; display: flex; flex-direction: column; gap: 10px }
+    .settings { display: flex; align-items: center; gap: 10px; padding: 8px; border-radius: 10px }
+
+    /* Profile clickable */
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: inherit;
+      border-radius: 10px;
+      padding: 8px;
+      transition: background 0.2s ease;
+    }
+    .profile:hover {
+      background: #f3f2ff;
+    }
+    .avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: #dbeafe; display: flex; align-items: center; justify-content: center; color: #1e293b
+    }
+
+    /* Main */
+    .main { flex: 1; padding: 26px 36px }
+    .topbar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px }
+    .tabs { display: flex; gap: 10px; flex-wrap: wrap }
+    .tab {
+      padding: 8px 16px; border-radius: 999px; background: #fff;
+      border: 1px solid #f0f0f0; cursor: pointer;
+      text-decoration: none; color: inherit
+    }
+    .tab.active { background: #fff; box-shadow: var(--shadow) }
+
+    .actions { display: flex; gap: 10px; flex-wrap: wrap }
+    .btn {
+      padding: 10px 14px; border-radius: 10px; border: 0;
+      background: #fff; box-shadow: var(--shadow); cursor: pointer
+    }
+    .btn.primary { background: linear-gradient(90deg, #6f61ff, #6cc1ff); color: #fff }
+
+    /* Hero */
+    .hero {
+      margin-top: 18px; background: linear-gradient(90deg, #7b61ff 0%, #6ca7ff 100%);
+      color: white; padding: 28px; border-radius: 18px;
+      display: flex; align-items: center; justify-content: space-between;
+      box-shadow: var(--shadow); gap: 18px
+    }
+    .hero .left { max-width: 70% }
+    .hero h2 { margin: 0; font-size: clamp(18px, 2.5vw, 22px) }
+    .hero p { margin: 8px 0; color: rgba(255,255,255,0.9); font-size: clamp(13px, 1.8vw, 15px) }
+    .chip {
+      padding: 6px 10px; background: rgba(255,255,255,0.14);
+      border-radius: 999px; font-weight: 600; font-size: 12px
+    }
+
+    /* Cards */
+    .section { margin-top: 26px }
+    .section-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap }
+    .cards {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px; margin-top: 12px
+    }
+    .card {
+      background: var(--card); border-radius: 14px; padding: 20px;
+      box-shadow: var(--shadow); border: 1px solid #f0f2f6
+    }
+
+    /* Bottom layout */
+    .grid3 { display: grid; grid-template-columns: 2fr 1fr; gap: 18px; margin-top: 18px }
+    .files, .projects { background: #fff; padding: 18px; border-radius: 14px; box-shadow: var(--shadow) }
+    .project-row { display: flex; align-items: center; justify-content: space-between; padding: 10px; border-radius: 10px; border: 1px solid #f4f5f7; margin-bottom: 8px }
+
+    /* Responsive */
+    @media(max-width:1000px){
+      .sidebar{width:72px;padding:16px}
+      .brand h1,.brand .small,.nav a span,.bottom .profile div{display:none}
+    }
+    @media(max-width:700px){
+      .app{flex-direction:column}
+      .sidebar{order:2;width:100%;flex-direction:row;overflow-x:auto;border-right:none;border-top:1px solid #eee;gap:10px}
+      .main{order:1;padding:16px}
+      .grid3{grid-template-columns:1fr}
+      .hero{flex-direction:column;align-items:flex-start}
+    }
+    @media(max-width:500px){
+      .btn{padding:8px 10px;font-size:12px}
+      .topbar{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">DA</div>
+        <div>
+          <h1>SHS Cloud</h1>
+          <div class="small muted">Creative Suite</div>
+        </div>
+      </div>
+      <div class="search"><input placeholder="Search..." aria-label="Search"></div>
+      <nav class="nav">
+        <a class="active" href="home.html"><span></span><span>Home</span></a>
+        <a href="apps.html"><span></span><span>Apps</span></a>
+        <a href="projects.html"><span></span><span>Projects</span></a>
+        <a href="learn.html"><span></span><span>Learn</span></a>
+        <a href="community.html"><span></span><span>Community</span></a>
+        
+      </nav>
+      <div class="bottom">
+        
+        <!-- Now clickable -->
+        <a class="profile" href="profile.html">
+          <div class="avatar">JD</div>
+          <div>
+            <div style="font-weight:600">John Doe</div>
+            <div class="small muted">Pro</div>
+          </div>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main">
+      <div class="topbar">
+        <div class="tabs">
+          <a class="tab active" href="home.html">Home</a>
+          <a class="tab" href="apps.html">Apps</a>
+          <a class="tab" href="files.html">Files</a>
+          <a class="tab" href="projects.html">Projects</a>
+          <a class="tab" href="learn.html">Learn</a>
+        </div>
+        <div class="actions">
+          <button class="btn primary" onclick="window.location.href='projects.html'">+ New Project</button>
+
+          <div style="width:44px;height:44px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);">🔔</div>
+        </div>
+      </div>
+
+      <section class="hero">
+        <div class="left">
+          <div class="chip">Premium</div>
+          <h2>Welcome to DesignAli Creative Suite</h2>
+          <p>Unleash your creativity with our comprehensive suite of professional design tools and resources.</p>
+        </div>
+        
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h3>Recent Progress</h3>
+          <a class="small muted" href="apps.html">View All</a>
+        </div>
+        <div class="cards">
+          <div class="card"> CAD Files</div>
+          <div class="card"> CAD Files</div>
+          <div class="card"> CAD Files</div>
+        </div>
+      </section>
+
+      <div class="grid3">
+        <div class="files">
+          <h4>Recent Files</h4>
+          <div class="project-row"><span>Summer_Banner_v3.psd</span><span>Updated 2d ago</span></div>
+        </div>
+        <div class="projects">
+          <h4>Active Projects</h4>
+          <div class="project-row"><span>Mayfair Campaign</span><span>45%</span></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Sidebar active state
+    document.querySelectorAll('.nav a').forEach(a => {
+      a.addEventListener('click', () => {
+        document.querySelectorAll('.nav a').forEach(x => x.classList.remove('active'));
+        a.classList.add('active');
+      });
+    });
+
+    // Tabs active state
+    document.querySelectorAll('.tabs .tab').forEach(t => {
+      t.addEventListener('click', () => {
+        document.querySelectorAll('.tabs .tab').forEach(x => x.classList.remove('active'));
+        t.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

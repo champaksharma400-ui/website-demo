@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shree Hari Dashboard</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", "Inter", sans-serif;
+        background-color: #f0f2f5;
+        color: #0078e7;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 28px;
+        background-color: #fff;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        font-size: 20px;
+        font-weight: 600;
+        color: #e60000;
+      }
+
+      .logo span {
+        margin-left: 8px;
+        color: #222;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        position: relative;
+      }
+
+      .nav-item {
+        position: relative;
+      }
+
+      .nav a {
+        text-decoration: none;
+        color: #222;
+        font-weight: 500;
+        font-size: 15px;
+        padding: 6px 0;
+        display: inline-block;
+        transition: color 0.3s ease;
+      }
+
+      .nav a:hover {
+        color: #0078e7;
+      }
+
+      .nav-item:hover .dropdown {
+        display: block;
+      }
+
+      .dropdown {
+        position: absolute;
+        top: 28px;
+        left: 0;
+        background-color: #fff;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        border-radius: 8px;
+        display: none;
+        flex-direction: column;
+        min-width: 140px;
+        z-index: 999;
+      }
+
+      .dropdown a {
+        padding: 6px 12px;
+        color: #333;
+        white-space: nowrap;
+      }
+
+      .dropdown a:hover {
+        background-color: #f5f5f5;
+        border-radius: 4px;
+      }
+
+      .actions {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .search-box {
+        position: relative;
+      }
+
+      .search-box input {
+        padding: 6px 12px 6px 32px;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        outline: none;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        background-color: #fff;
+      }
+
+      .search-box input:focus {
+        border-color: #0078e7;
+        box-shadow: 0 0 0 2px rgba(0, 120, 231, 0.15);
+      }
+
+      .search-box::before {
+        content: "🔍";
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        transform: translateY(-50%);
+        font-size: 14px;
+        color: #777;
+      }
+
+      .icon {
+        font-size: 18px;
+        cursor: pointer;
+        color: #444;
+        transition: color 0.3s ease;
+      }
+
+      .icon:hover {
+        color: #0078e7;
+      }
+
+      .divider {
+        height: 22px;
+        width: 1px;
+        background-color: #ccc;
+      }
+
+      .dashboard-img {
+        width: 100%;
+        height: auto;
+        max-height: 500px;
+        object-fit: cover;
+        border-bottom: 3px solid #e6e6e6;
+      }
+
+      .stories,
+      .benefits {
+        padding: 60px 40px;
+        background: #fff;
+        text-align: center;
+      }
+
+      .section-title,
+      .benefits-title {
+        font-size: 32px;
+        font-weight: 600;
+        color: #0f2743;
+        margin-bottom: 12px;
+      }
+
+      .section-subtitle,
+      .benefits-subtitle {
+        font-size: 15px;
+        color: #666;
+        margin-bottom: 40px;
+        max-width: 800px;
+        margin-inline: auto;
+      }
+
+      .story-grid,
+      .benefit-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 24px;
+      }
+
+      .story-card,
+      .benefit-item {
+        background: #fff;
+        border-radius: 14px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+        overflow: hidden;
+        transition: transform 0.3s ease;
+        text-align: left;
+      }
+
+      .story-card:hover,
+      .benefit-item:hover {
+        transform: scale(1.02);
+      }
+
+      .story-card img,
+      .benefit-item img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+      }
+
+      .story-content {
+        padding: 16px;
+      }
+
+      .story-tag {
+        color: #888;
+        font-size: 11px;
+        text-transform: uppercase;
+        font-weight: 600;
+      }
+
+      .story-content h3 {
+        margin-top: 8px;
+        font-size: 18px;
+        color: #0f2743;
+      }
+
+      .story-content p {
+        font-size: 14px;
+        color: #555;
+        margin: 12px 0;
+      }
+
+      .learn-more {
+        font-weight: 600;
+        font-size: 14px;
+        color: #0078e7;
+        text-decoration: none;
+      }
+
+      .learn-more:hover {
+        text-decoration: underline;
+      }
+
+      .benefit-item {
+        padding: 24px;
+        text-align: center;
+      }
+
+      .benefit-item img {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 18px;
+      }
+
+      .benefit-item h3 {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: #0f2743;
+      }
+
+      .benefit-item p {
+        font-size: 14px;
+        color: #555;
+        line-height: 1.6;
+      }
+
+      @media (max-width: 768px) {
+        .header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .nav {
+          flex-wrap: wrap;
+          gap: 12px;
+        }
+
+        .dashboard-img {
+          max-height: 300px;
+        }
+      }
+      .cad-showcase {
+        background-color: #0078e7;
+        padding: 60px 40px;
+        color: #fff;
+      }
+
+      .cad-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 40px;
+      }
+
+      .cad-text {
+        flex: 1 1 400px;
+        max-width: 600px;
+      }
+
+      .cad-text h2 {
+        font-size: 28px;
+        margin-bottom: 16px;
+        color: #fff;
+      }
+
+      .cad-text p {
+        font-size: 16px;
+        margin-bottom: 20px;
+        color: #e0f0ff;
+      }
+
+      .cta-button {
+        background-color: #fff;
+        color: #0078e7;
+        padding: 10px 20px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+      }
+
+      .cta-button:hover {
+        background-color: #e0eaff;
+      }
+
+      .cad-image {
+        flex: 1 1 400px;
+        text-align: center;
+      }
+
+      .cad-image img {
+        max-width: 600px;
+        height: 300px;
+        border-radius: 12px;
+      }
+
+      @media (max-width: 768px) {
+        .cad-container {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .cad-text,
+        .cad-image {
+          flex: 1 1 100%;
+        }
+      }
+      /* 4th Section*/
+      .discover-section {
+        background-color: #fff;
+        padding: 60px 20px;
+        text-align: center;
+      }
+      
+      .discover-title {
+        font-size: 36px;
+        font-weight: bold;
+        margin-bottom: 40px;
+        color: #0b0c14;
+      }
+      
+      .discover-cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 40px;
+      }
+      
+      .discover-card {
+        flex: 1 1 300px;
+        max-width: 320px;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+        transition: transform 0.3s ease;
+      }
+      
+      .discover-card:hover {
+        transform: translateY(-6px);
+      }
+      
+      .discover-card img {
+        width: 60px;
+        margin-bottom: 16px;
+        filter: invert(32%) sepia(94%) saturate(1600%) hue-rotate(190deg) brightness(95%) contrast(95%);
+      }
+      
+      .discover-card h3 {
+        font-size: 20px;
+        margin-bottom: 12px;
+        color: #0b0c14;
+      }
+      
+      .discover-card p {
+        font-size: 14px;
+        color: #5a5a5a;
+        margin-bottom: 16px;
+      }
+      
+      .discover-link {
+        font-weight: 600;
+        color: #0072ef;
+        text-decoration: none;
+        font-size: 14px;
+      }
+      
+      .discover-link:hover {
+        text-decoration: underline;
+      }
+      
+      /* want to  take triel*/
+      .trial-section {
+        background-color: #0072ef;
+        min-height: 200px; /* Adjust this value as needed */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 40px 20px;
+        color: #ffffff;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+      
+      .trial-content h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        font-weight: bold;
+      }
+      
+      .trial-content p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+      }
+      
+      .trial-button {
+        background-color: #0074e0;
+        padding: 12px 30px;
+        border-radius: 25px;
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+      }
+      
+      .trial-button:hover {
+        background-color: #005bb5;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="logo">
+        <img src="images/SHS.png" alt="Logo" width="50" />
+        <span>SHREE HARI SOLUTIONS</span>
+      </div>
+
+      <nav class="nav">
+        <div class="nav-item">
+          <a href="projectdashboard.html">Products</a>
+        </div>
+        <div class="nav-item"><a href="#">Solutions</a></div>
+        <div class="nav-item"><a href="support.html">Support</a></div>
+        <div class="nav-item"><a href="community.html">Community</a></div>
+        <div class="nav-item"><a href="pricing.html">Buy</a></div>
+      </nav>
+
+      <div class="actions">
+        <div class="search-box">
+          <input type="text" placeholder="Search..." />
+        </div>
+        <div class="divider"></div>
+        <a href="profile.html">👤</a>
+
+      </div>  
+    </header>
+
+    <img
+      src="images/Dashboard.png"
+      alt="Shree Hari Dashboard"
+      class="dashboard-img"
+    />
+
+    <section class="trial-section">
+      <div class="trial-content">
+        <h2>Want to Try SHS Cloud Platform  Now?</h2>
+        <p>Greek industrial machine company leverages our tools to innovate</p>
+        <a href="login.html" class="trial-button">Start trial</a>
+      </div>
+    </section>
+    
+    <section class="stories">
+      <h2 class="section-title">Services We Provide</h2>
+      <p class="section-subtitle">
+        Explore how leading innovators use our solutions to boost performance,
+        productivity, and results.
+      </p>
+
+      <div class="story-grid">
+        <!-- Story Cards -->
+        <div class="story-card">
+          <img src="/images/image.png" />
+          <div class="story-content">
+            <small class="story-tag">CUSTOMER STORY</small>
+            <h3>CAD Parts – Designing Cutting-Edge Robotics</h3>
+            <p>
+              Greek industrial machine company leverages our tools to innovate
+              and deliver new-age robotic systems.
+            </p>
+            <a href="projectdashboard.html">Products</a>
+          </div>
+        </div>
+        <div class="story-card">
+          <img src="images/image.png" />
+          <div class="story-content">
+            <small class="story-tag">CUSTOMER STORY</small>
+            <h3>Karis Boosts Design Reuse by 30%</h3>
+            <p>
+              Using cloud-based workflows, Customers and users can easily
+              preview detailed product overviews and seamlessly export or
+              integrate them into their SolidWorks environment for further
+              design and customization.
+            </p>
+            <a href="#" class="learn-more">➜ Learn more</a>
+          </div>
+        </div>
+        <div class="story-card">
+          <img src="/images/ongoing.png" alt="On Going Projects" />
+          <div class="story-content">
+            <small class="story-tag">CUSTOMER STORY</small>
+            <h3>Itaminas Slashes Time to Market</h3>
+            <p>
+              Iron ore firm reduces 60% development time by combining legacy
+              processes with next-gen design platforms.
+            </p>
+            <a href="#" class="learn-more">➜ Learn more</a>
+          </div>
+        </div>
+        <div class="story-card">
+          <img src="images/SW.png" alt="Solid Works Overview" />
+          <div class="story-content">
+            <small class="story-tag">CUSTOMER STORY</small>
+            <h3>What is SolidWorks?</h3>
+            <p>
+              SolidWorks is a professional 3D CAD (Computer-Aided  Design)
+              software used for creating detailed product designs, models, and
+              engineering drawings. It helps visualize and refine products
+              before they are built.
+            </p>
+            <a href="#" class="learn-more">➜ Learn more</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="benefits">
+      <h2 class="benefits-title">Why Choose Our CAD Parts & Solutions</h2>
+      <p class="benefits-subtitle">
+        Unlock advanced design tools and part-level customization for every
+        engineering need.
+      </p>
+
+      <div class="benefit-grid">
+        <div class="benefit-item">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/2920/2920277.png"
+            alt="Precision Parts Icon"
+          />
+          <h3>Precision CAD Components</h3>
+          <p>
+            Access thousands of pre-modeled parts and assemblies, engineered for
+            fit, tolerance, and function.
+          </p>
+        </div>
+        <div class="benefit-item">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/4221/4221656.png"
+            alt="Custom Tools Icon"
+          />
+          <h3>Custom Tooling Support</h3>
+          <p>
+            Create specialized jigs, fixtures, and molds using advanced modeling
+            tools tailored to your workflows.
+          </p>
+        </div>
+        <div class="benefit-item">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/3616/3616240.png"
+            alt="Integration Icon"
+          />
+          <h3>Seamless Integration</h3>
+          <p>
+            Integrate your CAD parts with CAM, PLM, or simulation software to
+            streamline end-to-end production.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cad-showcase">
+      <div class="cad-container">
+        <div class="cad-text">
+          <h2>Explore Our Complete Cloud platform</h2>
+          <p>
+            Discover a seamless design experience with our all-in-one cloud
+            platform. From product visualization to direct CAD integration,
+            manage and access your designs anytime, anywhere — fully compatible
+            with tools like SolidWorks for smooth workflow and collaboration.
+          </p>
+          <a href="projectdashboard.html" class="cta-button">Browse CAD Files ➜</a>
+        </div>
+        <div class="cad-image">
+          <img src="images/SHS.png" alt="CAD Vehicle Preview" />
+        </div>
+      </div>
+    </section>
+
+    <section class="discover-section">
+      <h2 class="discover-title">Discover</h2>
+      <div class="discover-cards">
+        <div class="discover-card">
+          <img
+            src="/images/Support_Icon.png"
+            alt="Support Icon"
+          />
+          <h3>Find Support</h3>
+          <p>
+            Get technical support with CAD tools and explore ways to grow and
+            share your skills.
+          </p>
+          <a href="support.html" class="discover-link">➜ Get help now</a>
+        </div>
+
+        <div class="discover-card">
+          <img
+            src="https://img.icons8.com/ios-filled/100/handshake.png"
+            alt="Contact Icon"
+          />
+          <h3>Contact Us</h3>
+          <p>
+            Connect with us via phone, email, or community forums. Find the
+            right contact for your project goals.
+          </p>
+          <a href="contactus.html" class="discover-link">➜ Connect today</a>
+        </div>
+
+        <div class="discover-card">
+          <img
+            src="https://img.icons8.com/ios-filled/100/laptop.png"
+            alt="Buy Icon"
+          />
+          <h3>Buy CAD Solutions</h3>
+          <p>
+            Explore flexible CAD tool licenses and find the best fit for your
+            design and modeling needs.
+          </p>
+          <a href="pricing.html" class="discover-link">➜ Buy now</a>
+        </div>
+      </div>
+    </section>
+    <footer style="background-color: #0f2743; color: #ffffff; padding: 40px 20px;">
+      <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px;">
+        <!-- About -->
+        <div style="flex: 1 1 250px;">
+          <h3 style="margin-bottom: 16px; font-size: 18px;">SHREE HARI SOLUTIONS</h3>
+          <p style="font-size: 14px; color: #ccc;">
+            Delivering next-gen CAD cloud storage and modeling solutions for modern engineering and design teams.
+          </p>
+        </div>
+    
+        <!-- Quick Links -->
+        <div style="flex: 1 1 200px;">
+          <h4 style="margin-bottom: 16px; font-size: 16px;">Quick Links</h4>
+          <ul style="list-style: none; padding: 0;">
+            <li><a href="product.html" style="color: #ccc; text-decoration: none;">Products</a></li>
+            <li><a href="#" style="color: #ccc; text-decoration: none;">Solutions</a></li>
+            <li><a href="#" style="color: #ccc; text-decoration: none;">Support</a></li>
+            <li><a href="#" style="color: #ccc; text-decoration: none;">Community</a></li>
+            <li><a href="#" style="color: #ccc; text-decoration: none;">Buy</a></li>
+          </ul>
+        </div>
+    
+        <!-- Contact Info -->
+        <div style="flex: 1 1 250px;">
+          <h4 style="margin-bottom: 16px; font-size: 16px;">Contact</h4>
+          <p style="font-size: 14px; color: #ccc;">📍  Gujarat, India</p>
+          <p style="font-size: 14px; color: #ccc;">📞 +91 98765 43210</p>
+          <p style="font-size: 14px; color: #ccc;">📧 support@shreehari.com</p>
+        </div>
+    
+        <!-- Social Media -->
+        <div style="flex: 1 1 200px;">
+          <h4 style="margin-bottom: 16px; font-size: 16px;">Follow Us</h4>
+          <p style="font-size: 24px;">
+            <a href="#" style="text-decoration: none; margin-right: 12px; color: #ccc;">🌐</a>
+            <a href="#" style="text-decoration: none; margin-right: 12px; color: #ccc;">📘</a>
+            <a href="#" style="text-decoration: none; margin-right: 12px; color: #ccc;">🐦</a>
+            <a href="#" style="text-decoration: none; color: #ccc;">📸</a>
+          </p>
+        </div>
+      </div>
+    
+      <div style="text-align: center; padding-top: 30px; margin-top: 30px; border-top: 1px solid #333; font-size: 14px; color: #aaa;">
+        © 2025 SHREE HARI SOLUTIONS. All rights reserved.
+      </div>
+    </footer>
+    
+  </body>
+</html>

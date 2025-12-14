@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shree Hari Solution - Sign Up</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      background: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+      color: #fff;
+    }
+
+    /* Navigation Bar */
+    header {
+      width: 100%;
+      padding: 20px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 0.95rem;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #00e6e6;
+    }
+
+    .btn-outline {
+      padding: 8px 18px;
+      border: 1px solid #fff;
+      border-radius: 20px;
+      transition: 0.3s;
+    }
+
+    .btn-outline:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 80px;
+      background: rgba(0,0,0,0.55);
+    }
+
+    .hero-text {
+      max-width: 45%;
+    }
+
+    .hero-text h1 {
+      font-size: 4rem;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .hero-text p {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 25px;
+      color: #ddd;
+    }
+
+    .hero-text .view-btn {
+      background: #fff;
+      color: #000;
+      padding: 12px 28px;
+      border-radius: 30px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .hero-text .view-btn:hover {
+      background: #00e6e6;
+      color: #000;
+    }
+
+    /* Sign Up Form */
+    .signup-box {
+      width: 400px;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+
+    .signup-box h2 {
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+      text-align: center;
+    }
+
+    .signup-box .input-group {
+      margin-bottom: 1rem;
+    }
+
+    .signup-box label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 0.9rem;
+    }
+
+    .signup-box input {
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    .signup-box button {
+      width: 100%;
+      padding: 0.9rem;
+      margin-top: 1rem;
+      border: none;
+      border-radius: 20px;
+      background: linear-gradient(90deg, #4c2ca0, #1fd4c5);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .signup-box button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    }
+
+    .signup-box .extra-links {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    .signup-box .extra-links a {
+      color: #1fd4c5;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .signup-box .extra-links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">Shree Hari Solution</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Plans</a>
+      <a href="#">Community</a>
+      <a href="#">About Us</a>
+      <a href="login.html">Login</a>
+      <a href="#" class="btn-outline">Sign Up</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>JOIN THE COMMUNITY</h1>
+      <p>
+        Sign up today to become a part of our amazing community. 
+        Get access to exclusive features, resources, and support 
+        for your journey with Shree Hari Solution.
+      </p>
+      <button class="view-btn">EXPLORE</button>
+    </div>
+
+    <!-- Sign Up Box -->
+    <div class="signup-box">
+      <h2>Create Account</h2>
+      <form>
+        <div class="input-group">
+          <label>Full Name</label>
+          <input type="text" placeholder="Enter your name" required>
+        </div>
+        <div class="input-group">
+          <label>Email</label>
+          <input type="email" placeholder="Enter your email" required>
+        </div>
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" placeholder="Enter your password" required>
+        </div>
+        <div class="input-group">
+          <label>Confirm Password</label>
+          <input type="password" placeholder="Confirm your password" required>
+        </div>
+        <button type="submit">Sign Up</button>
+      </form>
+      <div class="extra-links">
+        <p>Already have an account? <a href="#">Login</a></p>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

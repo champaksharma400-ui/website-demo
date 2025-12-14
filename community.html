@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Community Page</title>
+  <style>
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: #fff;
+      background: linear-gradient(rgba(37, 99, 235, 0.85), rgba(30, 64, 175, 0.85)),
+                  url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    
+    /* Reset + Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background: #f4f6f9;
+      color: #333;
+      line-height: 1.6;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(90deg, #1e3a8a, #2563eb);
+      color: #fff;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    header .logo {
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      font-weight: 500;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0%;
+      height: 2px;
+      background: #fbbf24;
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover {
+      color: #fbbf24;
+    }
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* CTA Button */
+    .join-btn {
+      background: #fbbf24;
+      color: #1e3a8a;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      font-size: 0.95rem;
+      border-radius: 1.5rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: transform 0.2s ease, background 0.3s ease;
+    }
+    .join-btn:hover {
+      background: #ffd84d;
+      transform: scale(1.05);
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: #1e3a8a;
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        width: 200px;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .hamburger {
+        display: block;
+      }
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: #fff;
+      background: linear-gradient(90deg, rgba(76,44,160,0.87) 0%, rgba(31,212,197,0.8) 100%),
+                  url('https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1000&q=80') center/cover;
+      background-attachment: fixed;
+    
+    }
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      max-width: 600px;
+      margin: auto;
+      margin-bottom: 2rem;
+      font-size: 1.2rem;
+    }
+    .hero button {
+      background: #fbbf24;
+      color: #1e3a8a;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 2rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: transform 0.2s ease;
+    }
+    .hero button:hover {
+      transform: scale(1.05);
+    }
+
+    /* Section Container */
+    section {
+      padding: 3rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+    section h3 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #1e3a8a;
+    }
+
+    /* Cards */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card h4 {
+      margin-bottom: 0.5rem;
+      color: #2563eb;
+    }
+    .card p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    /* Footer */
+    footer {
+      background: #1e3a8a;
+      color: #fff;
+      text-align: center;
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+    footer a {
+      color: #fbbf24;
+      margin: 0 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">🌐 My Community</div>
+    <nav class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Forum</a>
+      <a href="#">Events</a>
+      <a href="#">Contact</a>
+    </nav>
+    <button class="join-btn">Join Now</button>
+    <div class="hamburger">☰</div>
+    
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h2>Welcome to Our Community</h2> 
+    <p>Connect, share, and grow with like-minded people. Join discussions, attend events, and be part of something bigger.</p>
+    <button>Get Started</button>
+  </section>
+
+  <!-- About -->
+  <section>
+    <h3>About Us</h3>
+    <p style="text-align:center; max-width:800px; margin:auto;">
+      We are a vibrant community built for knowledge sharing, networking, and collaboration.
+      Our goal is to empower members with resources, events, and meaningful connections.
+    </p>
+  </section>
+
+  <!-- Discussions -->
+  <section>
+    <h3>Latest Discussions</h3>
+    <div class="grid">
+      <div class="card">
+        <h4>How to get started with CAD tools?</h4>
+        <p>Members share tips, guides, and experiences for beginners entering CAD world.</p>
+      </div>
+      <div class="card">
+        <h4>Upcoming Tech Trends</h4>
+        <p>Discuss AI, cloud, and future technologies shaping industries.</p>
+      </div>
+      <div class="card">
+        <h4>Best Practices for Collaboration</h4>
+        <p>Learn how teams effectively collaborate across projects and platforms.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Events -->
+  <section>
+    <h3>Upcoming Events</h3>
+    <div class="grid">
+      <div class="card">
+        <h4>🌟 Online Webinar</h4>
+        <p>Join our experts live on Zoom - 20th Aug, 6 PM IST.</p>
+      </div>
+      <div class="card">
+        <h4>🤝 Community Meetup</h4>
+        <p>Local meetup in Bangalore - 25th Aug, 11 AM IST.</p>
+      </div>
+      <div class="card">
+        <h4>📚 Workshop</h4>
+        <p>Hands-on training for beginners in CAD design - 1st Sep, 2 PM IST.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Members -->
+  <section>
+    <h3>Active Members</h3>
+    <div class="grid">
+      <div class="card">
+        <h4>Aditya Sharma</h4>
+        <p>Software Engineer | Contributor</p>
+      </div>
+      <div class="card">
+        <h4>Priya Verma</h4>
+        <p>Designer | Event Organizer</p>
+      </div>
+      <div class="card">
+        <h4>Rahul Mehta</h4>
+        <p>Community Moderator | Mentor</p>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background-color: #0f2743; color: #ffffff; padding: 40px 20px;">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px;">
+      <!-- About -->
+      <div style="flex: 1 1 250px;">
+        <h3 style="margin-bottom: 16px; font-size: 18px;">SHREE HARI SOLUTIONS</h3>
+        <p style="font-size: 14px; color: #ccc;">
+          Delivering next-gen CAD cloud storage and modeling solutions for modern engineering and design teams.
+        </p>
+      </div>
+  
+      <!-- Quick Links -->
+      <div style="flex: 1 1 200px;">
+        <h4 style="margin-bottom: 16px; font-size: 16px;">Quick Links</h4>
+        <ul style="list-style: none; padding: 0;">
+          <li><a href="product.html" style="color: #ccc; text-decoration: none;">Products</a></li>
+          <li><a href="#" style="color: #ccc; text-decoration: none;">Solutions</a></li>
+          <li><a href="#" style="color: #ccc; text-decoration: none;">Support</a></li>
+          <li><a href="#" style="color: #ccc; text-decoration: none;">Community</a></li>
+          <li><a href="#" style="color: #ccc; text-decoration: none;">Buy</a></li>
+        </ul>
+      </div>
+  
+      <!-- Contact Info -->
+      <div style="flex: 1 1 250px;">
+        <h4 style="margin-bottom: 16px; font-size: 16px;">Contact</h4>
+        <p style="font-size: 14px; color: #ccc;">📍  Gujarat, India</p>
+        <p style="font-size: 14px; color: #ccc;">📞 +91 98765 43210</p>
+        <p style="font-size: 14px; color: #ccc;">📧 support@shreehari.com</p>
+      </div>
+  
+      <!-- Social Media -->
+      <div style="flex: 1 1 200px;">
+        <h4 style="margin-bottom: 16px; font-size: 16px;">Follow Us</h4>
+        <p style="font-size: 24px;">
+          <a href="#" style="text-decoration: none; margin-right: 12px; color: #ccc;">🌐</a>
+          <a href="#" style="text-decoration: none; margin-right: 12px; color: #ccc;">📘</a>
+          <a href="#" style="text-decoration: none; margin-right: 12px; color: #ccc;">🐦</a>
+          <a href="#" style="text-decoration: none; color: #ccc;">📸</a>
+        </p>
+      </div>
+    </div>
+  
+    <div style="text-align: center; padding-top: 30px; margin-top: 30px; border-top: 1px solid #333; font-size: 14px; color: #aaa;">
+      © 2025 SHREE HARI SOLUTIONS. All rights reserved.
+    </div>
+  </footer>
+
+
+  <!-- JS for Hamburger -->
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

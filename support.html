@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Meta Business Help Centre</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff;
+      color: #1c1e21;
+    }
+
+    /* Header */
+    header {
+      background: #242526;
+      color: #fff;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h2 {
+      font-size: 18px;
+      margin: 0;
+      font-weight: 600;
+    }
+    header a {
+      color: #fff;
+      font-size: 14px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    header a:hover {
+      text-decoration: underline;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: #242526;
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .hero h1 {
+      color: #fff;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+    .search-box {
+      background: #fff;
+      border-radius: 6px;
+      padding: 10px 15px;
+      display: flex;
+      align-items: center;
+      max-width: 500px;
+      margin: 0 auto;
+      border: 1px solid #ddd;
+    }
+    .search-box input {
+      border: none;
+      outline: none;
+      flex: 1;
+      font-size: 14px;
+      color: #555;
+    }
+    .search-box button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      color: #555;
+    }
+
+    /* Content Section */
+    .content {
+      padding: 40px 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .content h2 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+    .content p {
+      color: #555;
+      margin-bottom: 30px;
+      font-size: 15px;
+    }
+
+    /* Cards */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: #f7f8fa;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 20px;
+    }
+    .card h3 {
+      font-size: 16px;
+      margin-bottom: 20px;
+      color: #1c1e21;
+    }
+    .card button {
+      background: none;
+      border: 1px solid #1877f2;
+      color: #1877f2;
+      padding: 8px 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .card button:hover {
+      background: #f0f4ff;
+    }
+
+    /* Side by Side Sections */
+    .section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      margin: 60px auto;
+      max-width: 1100px;
+      padding: 20px;
+    }
+    .section:nth-child(even) {
+      flex-direction: row-reverse; /* alternate left/right */
+    }
+    .section-text {
+      flex: 1;
+    }
+    .section-text h3 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: #1c1e21;
+    }
+    .section-text p {
+      font-size: 15px;
+      color: #555;
+      line-height: 1.6;
+    }
+    .section img {
+      flex: 1;
+      max-width: 500px;
+      border-radius: 6px;
+    }
+    .contact-section {
+        background: #f0f2f5;
+        text-align: center;
+        padding: 60px 20px;
+        margin-top: 40px;
+      }
+      .contact-section h2 {
+        font-size: 24px;
+        margin-bottom: 15px;
+        color: #1c1e21;
+      }
+      .contact-section p {
+        font-size: 15px;
+        color: #555;
+        max-width: 600px;
+        margin: 0 auto 25px auto;
+        line-height: 1.6;
+      }
+      .contact-btn {
+        display: inline-block;
+        background: #1877f2;
+        color: #fff;
+        padding: 12px 24px;
+        border-radius: 6px;
+        font-size: 15px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background 0.3s ease;
+      }
+      .contact-btn:hover {
+        background: #0d65d9;
+      }
+      
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h2>SHREE HARI CLOUD SERVICE</h2>
+    <a href="#">→ Get support</a>
+  </header>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <h1>Help Centre!</h1>
+    <div class="search-box">
+      <input type="text" placeholder="Search for goals, topics and resources">
+      <button>🔍</button>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+    <h2>Find business support</h2>
+    <p>
+      Search the Business Help Centre for information on how to troubleshoot ads,
+      manage accounts, monetise content and sell on Facebook and Instagram.
+      Here are some articles that we suggest for you.
+    </p>
+
+    <!-- Cards -->
+    <div class="cards">
+      <div class="card">
+        <h3>Confirm your identity for Commerce Manager</h3>
+        <button>Learn more</button>
+      </div>
+      <div class="card">
+        <h3>Add a Facebook Page to your shop in Commerce Manager</h3>
+        <button>Learn more</button>
+      </div>
+      <div class="card">
+        <h3>Contact support in Commerce Manager</h3>
+        <button>Learn more</button>
+      </div>
+      <div class="card">
+        <h3>Set up Ads Manager and billing</h3>
+        <button>Learn more</button>
+      </div>
+      <div class="card">
+        <h3>Troubleshoot common ad issues</h3>
+        <button>Learn more</button>
+      </div>
+      <div class="card">
+        <h3>Best practices for account security</h3>
+        <button>Learn more</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Side by Side Sections -->
+  <div class="section">
+    <div class="section-text">
+      <h3>Grow your business with Meta tools</h3>
+      <p>Learn how to use Facebook and Instagram to promote your products, connect with customers, and grow your sales. Access step-by-step guides and resources tailored for your business journey.</p>
+    </div>
+    <img src="images/BusinessCloud.png" alt="Business Growth">
+  </div>
+
+  <div class="section">
+    <div class="section-text">
+      <h3>Manage accounts easily</h3>
+      <p>Find out how to set up, manage, and secure your Meta business accounts. Simplify collaboration and keep your business information safe while your team works together.</p>
+    </div>
+    <img src="images/BusinessCloud.png" alt="Account Management">
+  </div>
+
+  <div class="section">
+    <div class="section-text">
+      <h3>Advertising tips and guidance</h3>
+      <p>Explore resources to create effective ad campaigns, target the right audience, and maximise your return on investment using Ads Manager.</p>
+    </div>
+    <img src="images/ads.png" alt="Advertising">
+  </div>
+
+  <div class="section">
+    <div class="section-text">
+      <h3>Safety & Security</h3>
+      <p>Protect your business accounts and data. Learn how to set up two-factor authentication, monitor login alerts, and avoid suspicious activities.</p>
+    </div>
+    <img src="images/security.png" alt="Security">
+  </div>
+  <div class="contact-section">
+    <h2>Need more help?</h2>
+    <p>
+      Our support team is here to assist you with any questions, concerns, or issues you may face.  
+      Reach out to us and we’ll get back to you as soon as possible.
+    </p>
+    <a href="contactus.html" class="contact-btn">📩 Contact Us</a>
+  </div>
+</body>
+<footer style="background-color: #0f2743; color: #ffffff; padding: 40px 20px;">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px;">
+      <!-- About -->
+      <div style="flex: 1 1 250px;">
+        <h3 style="margin-bottom: 16px; font-size: 18px;">SHREE HARI SOLUTIONS</h3>
+        <p style="font-size: 14px; color: #ccc;">
+          Delivering next-gen CAD cloud storage and modeling solutions for modern engineering and design teams.
+        </p>
+      </div>
+  
+      <!-- Quick Links -->
+      <div style="flex: 1 1 200px;">
+        <h4 style="margin-bottom: 16px; font-size: 16px;">Quick Links</h4>
+        <ul style="list-style: none; padding: 0;">
+          <li><a href="product.html" style="color: #ccc; text-decoration: none;">Products</a></li>
+          <li><a href="#" style="color: #ccc; text-decoration: none;">Solutions</a></li>
+          <li><a href="#" style="color: #ccc; text-decoration: none;">Support</a></li>
+          <li><a href="#" style="color: #ccc; text-decoration: none;">Community</a></li>
+          <li><a href="#" style="color: #ccc; text-decoration: none;">Buy</a></li>
+        </ul>
+      </div>
+  
+      <!-- Contact Info -->
+      <div style="flex: 1 1 250px;">
+        <h4 style="margin-bottom: 16px; font-size: 16px;">Contact</h4>
+        <p style="font-size: 14px; color: #ccc;">📍  Gujarat, India</p>
+        <p style="font-size: 14px; color: #ccc;">📞 +91 98765 43210</p>
+        <p style="font-size: 14px; color: #ccc;">📧 support@shreehari.com</p>
+      </div>
+  
+      <!-- Social Media -->
+      <div style="flex: 1 1 200px;">
+        <h4 style="margin-bottom: 16px; font-size: 16px;">Follow Us</h4>
+        <p style="font-size: 24px;">
+          <a href="#" style="text-decoration: none; margin-right: 12px; color: #ccc;">🌐</a>
+          <a href="#" style="text-decoration: none; margin-right: 12px; color: #ccc;">📘</a>
+          <a href="#" style="text-decoration: none; margin-right: 12px; color: #ccc;">🐦</a>
+          <a href="#" style="text-decoration: none; color: #ccc;">📸</a>
+        </p>
+      </div>
+    </div>
+  
+    <div style="text-align: center; padding-top: 30px; margin-top: 30px; border-top: 1px solid #333; font-size: 14px; color: #aaa;">
+      © 2025 SHREE HARI SOLUTIONS. All rights reserved.
+    </div>
+  </footer>
+</html>
+ 

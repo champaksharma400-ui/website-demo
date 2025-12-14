@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Project List UI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: #f8f8fb;
+      padding: 20px;
+      color: #333;
+    }
+
+    .toolbar { background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 0 10px rgba(0,0,0,0.05); }
+    .tabs { display: flex; border-bottom: 2px solid #eee; margin-bottom: 15px; }
+    .tab { padding: 10px 20px; font-weight: 600; color: #999; cursor: pointer; }
+    .tab.active { color: #000; border-bottom: 3px solid #7a4ded; }
+
+    .toolbar-controls { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+    .left-controls, .right-controls { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+
+    .btn-update, .btn-add {
+      background-color: #7a4ded; color: white; padding: 8px 16px; border: none;
+      border-radius: 6px; cursor: pointer; font-weight: 600;
+    }
+
+    .dropdown-container { position: relative; }
+    .dropdown-btn {
+      padding: 8px 10px; border: 1px solid #ccc; border-radius: 6px;
+      background-color: white; cursor: pointer;
+    }
+
+    .dropdown-menu {
+      position: absolute; top: 110%; left: 0; background: white; border: 1px solid #ccc;
+      border-radius: 6px; padding: 8px; display: none; z-index: 99; min-width: 150px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .dropdown-menu label { display: block; padding: 5px; font-size: 14px; cursor: pointer; }
+
+    .search-input {
+      padding: 8px 10px 8px 30px; border: 1px solid #ccc; border-radius: 6px;
+      background-color: white;
+      background-image: url('https://cdn-icons-png.flaticon.com/512/622/622669.png');
+      background-size: 16px; background-repeat: no-repeat; background-position: 8px center;
+    }
+
+    .toolbar-bottom { margin-top: 15px; font-size: 14px; display: flex; flex-direction: column; gap: 10px; }
+    .toolbar-bottom a { color: #7a4ded; text-decoration: none; margin-left: 10px; }
+    .refresh { display: flex; align-items: center; color: #7a4ded; cursor: pointer; gap: 5px; font-weight: 500; }
+
+    .project-table {
+      width: 100%;
+      background: white;
+      border-radius: 12px;
+      overflow-x: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 800px; }
+    thead { background-color: #fafafa; }
+    th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid #eee; }
+    th { color: #888; font-weight: 600; }
+
+    .project-title { display: flex; align-items: center; gap: 10px; font-weight: 600; color: #4a4a4a; }
+    .color-bar { width: 4px; height: 32px; border-radius: 2px; }
+    .color-blue { background-color: #357edd; }
+    .color-lime { background-color: #c4e538; }
+    .color-orange { background-color: #f39c12; }
+    .status { display: flex; align-items: center; gap: 6px; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+    .active { background-color: white; }
+    .not-started { background-color: #ccc; }
+
+    @media (max-width: 768px) {
+      .toolbar-controls { flex-direction: column; align-items: stretch; }
+      .left-controls, .right-controls { justify-content: space-between; width: 100%; }
+      .search-input { width: 100%; }
+    }
+
+    /* MODAL */
+    .modal {
+      display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5); justify-content: center; align-items: center;
+      z-index: 999;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    .modal-content h2 {
+      margin-bottom: 10px;
+    }
+
+    .modal-content input, .modal-content select {
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .modal-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+
+    .modal-buttons button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .btn-cancel { background-color: #ccc; color: #000; }
+    .btn-submit { background-color: #7a4ded; color: #fff; }
+
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <div class="tabs">
+      <div class="tab active">Project List</div>
+      <div class="tab">Groups</div>
+    </div>
+
+    <div class="toolbar-controls">
+      <div class="left-controls">
+        <div class="icon-group">
+          <button title="Grid">☷</button>
+          <button title="Table">▦</button>
+          <button title="List">≡</button>
+        </div>
+        <span>VIEW</span>
+        <button class="btn-update">Update</button>
+        <span>CONFIGURE</span>
+        <div class="dropdown-container">
+          <div class="dropdown-btn" id="columnsBtn">Columns ▾</div>
+          <div class="dropdown-menu" id="columnsMenu">
+            <label><input type="checkbox" checked> Title</label>
+            <label><input type="checkbox" checked> Details</label>
+            <label><input type="checkbox" checked> Color</label>
+            <label><input type="checkbox" checked> Last Updated</label>
+          </div>
+        </div>
+        <span>SHOW</span>
+        <strong>Your Projects</strong>
+        <input class="search-input" type="text" placeholder="Search" />
+      </div>
+
+      <div class="right-controls">
+        <div class="dropdown-container">
+          <div class="dropdown-btn" id="exportBtn">Export ▾</div>
+          <div class="dropdown-menu" id="exportMenu">
+            <label>Export as PDF</label>
+            <label>Export as CSV</label>
+            <label>Export as XLS</label>
+          </div>
+        </div>
+        <button class="btn-add" id="openModal">+ Add Project</button>
+      </div>
+    </div>
+
+    <div class="toolbar-bottom">
+      <div>
+        1 Filter Applied, 17 Filtered Results
+        <a href="#">Clear All</a>
+      </div>
+      <div class="refresh">🔄 Refresh List</div>
+    </div>
+  </div>
+
+  <div class="project-table">
+    <table id="projectTable">
+      <thead>
+        <tr>
+          <th><input type="checkbox" /></th>
+          <th>TITLE</th>
+          <th>DETAILS</th>
+          <th>PROJECT COLOR</th>
+          <th>LAST UPDATED</th>
+          <th>% DONE</th>
+          <th>STAGE</th>
+          <th>STATUS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Initial rows here -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal" id="projectModal">
+    <div class="modal-content">
+      <h2>Add New Project</h2>
+      <input type="text" id="projTitle" placeholder="Project Title" required />
+      <input type="text" id="projColor" placeholder="Project Color (e.g. Blue, Lime)" required />
+      <input type="number" id="projProgress" placeholder="% Done" min="0" max="100" />
+      <input type="text" id="projStage" placeholder="Stage (e.g. Estimate)" />
+      <select id="projStatus">
+        <option value="Active">Active</option>
+        <option value="Not Started">Not Started</option>
+      </select>
+      <div class="modal-buttons">
+        <button class="btn-cancel" id="closeModal">Cancel</button>
+        <button class="btn-submit" id="addProjectBtn">Add</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById('projectModal');
+    const openModal = document.getElementById('openModal');
+    const closeModal = document.getElementById('closeModal');
+    const addProjectBtn = document.getElementById('addProjectBtn');
+
+    openModal.addEventListener('click', () => modal.style.display = 'flex');
+    closeModal.addEventListener('click', () => modal.style.display = 'none');
+
+    addProjectBtn.addEventListener('click', () => {
+      const title = document.getElementById('projTitle').value.trim();
+      const color = document.getElementById('projColor').value.trim().toLowerCase();
+      const progress = document.getElementById('projProgress').value || "0%";
+      const stage = document.getElementById('projStage').value || "Project";
+      const status = document.getElementById('projStatus').value;
+
+      if (!title || !color) {
+        alert('Please fill out required fields.');
+        return;
+      }
+
+      const colorClass = color.includes('blue') ? 'color-blue' :
+                         color.includes('lime') ? 'color-lime' :
+                         color.includes('orange') ? 'color-orange' : '';
+
+      const dotClass = status === 'Active' ? 'active' : 'not-started';
+      const now = new Date().toLocaleString();
+
+      const row = `
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td><div class="project-title"><div class="color-bar ${colorClass}"></div>${title}</div></td>
+          <td>📄</td>
+          <td style="color: ${color};">${color}</td>
+          <td>${now}</td>
+          <td>${progress}%</td>
+          <td>${stage}</td>
+          <td class="status"><span class="dot ${dotClass}"></span>${status}</td>
+        </tr>
+      `;
+
+      document.querySelector('#projectTable tbody').insertAdjacentHTML('beforeend', row);
+      modal.style.display = 'none';
+
+      // Reset form
+      document.getElementById('projTitle').value = '';
+      document.getElementById('projColor').value = '';
+      document.getElementById('projProgress').value = '';
+      document.getElementById('projStage').value = '';
+    });
+
+    // Dropdown handling
+    function setupDropdown(btnId, menuId) {
+      const btn = document.getElementById(btnId);
+      const menu = document.getElementById(menuId);
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+      });
+      document.addEventListener('click', () => menu.style.display = 'none');
+      menu.addEventListener('click', (e) => e.stopPropagation());
+    }
+
+    setupDropdown('columnsBtn', 'columnsMenu');
+    setupDropdown('exportBtn', 'exportMenu');
+  </script>
+</body>
+</html>

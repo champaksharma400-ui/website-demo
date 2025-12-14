@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shree Hari Solution - Login</title>
+
+  <!-- Google Identity Services -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+  <style>
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Poppins", sans-serif; }
+    html,body { height: 100%; }
+
+    body {
+      min-height: 100vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      background: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+      color: #fff;
+    }
+
+    /* Navigation Bar */
+    header {
+      width: 100%;
+      padding: 20px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 1px; }
+    nav { display: flex; align-items: center; gap: 25px; }
+    nav a { text-decoration: none; color: #fff; font-size: 0.95rem; transition: 0.3s; }
+    nav a:hover { color: #00e6e6; }
+    .btn-outline { padding: 8px 18px; border: 1px solid #fff; border-radius: 20px; transition: 0.3s; }
+    .btn-outline:hover { background: #fff; color: #000; }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 80px;
+      background: rgba(0,0,0,0.55);
+    }
+
+    .hero-text { max-width: 45%; }
+    .hero-text h1 { font-size: 4rem; line-height: 1.2; margin-bottom: 20px; font-weight: 700; }
+    .hero-text p { font-size: 1rem; line-height: 1.6; margin-bottom: 25px; color: #ddd; }
+    .hero-text .view-btn {
+      background: #fff; color: #000; padding: 12px 28px; border-radius: 30px;
+      border: none; font-weight: bold; cursor: pointer; transition: 0.3s;
+    }
+    .hero-text .view-btn:hover { background: #00e6e6; color: #000; }
+
+    /* Login Form */
+    .login-box {
+      width: 380px;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+
+    .login-box h2 { margin-bottom: 1.5rem; font-size: 1.8rem; text-align: center; }
+    .login-box .input-group { margin-bottom: 1rem; }
+    .login-box label { display: block; margin-bottom: 5px; font-size: 0.9rem; }
+    .login-box input {
+      width: 100%; padding: 0.8rem; border-radius: 10px; border: none; outline: none; font-size: 1rem;
+    }
+
+    .login-box .primary-btn {
+      width: 100%; padding: 0.9rem; margin-top: 1rem; border: none; border-radius: 20px;
+      background: linear-gradient(90deg, #4c2ca0, #1fd4c5); color: #fff; font-size: 1rem; font-weight: bold;
+      cursor: pointer; transition: 0.3s;
+    }
+    .login-box .primary-btn:hover { transform: scale(1.03); box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
+
+    .login-box .extra-links { margin-top: 1rem; font-size: 0.85rem; text-align: center; }
+    .login-box .extra-links a { color: #1fd4c5; text-decoration: none; font-weight: 500; }
+    .login-box .extra-links a:hover { text-decoration: underline; }
+
+    /* Google button (custom look) */
+    .google-btn {
+      width: 100%;
+      margin-top: 12px;
+      padding: 0.8rem;
+      border-radius: 20px;
+      border: none;
+      background: #fff;
+      color: #000;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.18);
+      transition: 0.2s;
+    }
+
+    .google-btn img { width: 20px; height: 20px; }
+    .google-btn:active { transform: translateY(1px); }
+    .google-caption { font-size: 0.85rem; color: #ddd; text-align: center; margin-top: 10px; }
+
+    /* small screens */
+    @media (max-width: 900px) {
+      .hero { flex-direction: column; padding: 40px 24px; gap: 30px; justify-content: center; }
+      .hero-text { max-width: 100%; text-align: center; }
+      .login-box { width: 92%; max-width: 420px; margin: 0 auto; }
+      header { padding: 12px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">Shree Hari Solution</div>
+    <nav>
+      <a href="dashboard.html">Home</a>
+      <a href="pricing.html">Plans</a>
+      <a href="community.html">Community</a>
+      <a href="#">About Us</a>
+      <a href="#login.html">Login</a>
+      <a href="signup.html" class="btn-outline">Sign Up</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" aria-label="hero">
+    <div class="hero-text">
+      <h1>IDEAL LIFE</h1>
+      <p>
+        Unconstrained life, there is no city, noisy, tea and wine tasting with friends,
+        watching the sunset, enjoying the quietness of the lake, breathing fresh air,
+        living a life without troubles — this is one very beautiful life.
+      </p>
+      <button class="view-btn" type="button" onclick="location.href='about.html'">VIEW</button>
+    </div>
+
+    <!-- Login Box -->
+    <div class="login-box" id="login-box">
+      <h2>Login</h2>
+
+      <!-- Traditional login form (will remain functional) -->
+      <form id="login-form" onsubmit="handleLocalLogin(event)">
+        <div class="input-group">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="Enter your email" required>
+        </div>
+
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" placeholder="Enter your password" required>
+        </div>
+
+        <button type="submit" class="primary-btn">Login</button>
+      </form>
+
+      <!-- Divider -->
+      <div class="google-caption">or continue with</div>
+
+      <!-- Custom Google button (visual) -->
+      <button id="customGoogleBtn" class="google-btn" type="button" aria-label="Sign in with Google">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google logo" />
+        Sign in with Google
+      </button>
+
+      <!-- Google rendered button (optional): we include a hidden container for the official GSI button if you prefer -->
+      <div id="gsi-button" style="margin-top:8px; display:none;"></div>
+
+      <div class="extra-links">
+        <p><a href="#">Forgot Password?</a></p>
+        <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    /************************************************************************
+     * Replace 'YOUR_GOOGLE_CLIENT_ID' with your Google OAuth Client ID.
+     * Create OAuth 2.0 Client ID at https://console.cloud.google.com/apis/credentials
+     *
+     * IMPORTANT:
+     * - Authorized JavaScript origins must match where you host this file.
+     * - Server-side verification required for production: send the ID token (credential)
+     *   to your server and verify it with Google's tokeninfo endpoint or a Google SDK.
+     ************************************************************************/
+    const GOOGLE_CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID';
+
+    // Local login handler (demo)
+    function handleLocalLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      // demo behavior: show console message; replace with real authentication
+      console.log('Local login requested for:', email);
+      alert('Local login flow: replace with your authentication logic.');
+    }
+
+    // Callback that receives the ID token credential from Google Identity Services
+    function handleCredentialResponse(response) {
+      // response.credential is a JWT (ID token). Send it to your server for verification.
+      console.log('Encoded ID token (credential):', response.credential);
+
+      // Example: decode basic info client-side (not secure / not a replacement for server verification)
+      // Minimal decode for demo (base64 decode of JWT payload)
+      try {
+        const payload = JSON.parse(atob(response.credential.split('.')[1].replace(/\-/g, '+').replace(/_/g, '/')));
+        console.log('Decoded ID token payload:', payload);
+        alert('Google sign-in succeeded for: ' + (payload.email || 'unknown email') + '\n\nCheck console for full payload.');
+      } catch (err) {
+        console.error('Failed to decode credential payload', err);
+      }
+
+      // TODO: POST the credential to your backend endpoint for verification & user creation/login.
+      // Example (fetch):
+      // fetch('/auth/google', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ credential: response.credential }) })
+      //   .then(res => res.json()).then(data => console.log(data));
+    }
+
+    // Initialize Google Identity Services and wire the custom button
+    window.onload = function () {
+      if (!GOOGLE_CLIENT_ID || GOOGLE_CLIENT_ID === 'YOUR_GOOGLE_CLIENT_ID') {
+        console.warn('Google Client ID is not configured. Replace GOOGLE_CLIENT_ID variable with your client ID.');
+        // Show the official button container as hidden guidance (optional).
+      }
+
+      // Initialize the library
+      google.accounts.id.initialize({
+        client_id: GOOGLE_CLIENT_ID,
+        callback: handleCredentialResponse,
+        auto_select: false
+      });
+
+      // Render the official Google button if you want (hidden by default)
+      google.accounts.id.renderButton(
+        document.getElementById('gsi-button'),
+        { theme: 'outline', size: 'large', type: 'standard' } // customization
+      );
+
+      // When user clicks our custom-styled button, prompt the Google one-tap / popup
+      const customBtn = document.getElementById('customGoogleBtn');
+      customBtn.addEventListener('click', function () {
+        // Show the account chooser/popup
+        // With google.accounts.id.prompt() the one-tap or account chooser may show depending on context.
+        // To request immediate credential in a popup-like flow, use token client (for OAuth) — this example uses the ID token flow.
+        google.accounts.id.prompt((notification) => {
+          // notification contains the reason (e.g., "dismissed" or "displayed")
+          console.log('GSI prompt status:', notification);
+        });
+      });
+
+      
+    };
+  </script>
+</body>
+</html>
+
